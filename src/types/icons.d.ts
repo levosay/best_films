@@ -1,0 +1,12 @@
+export type Icons =
+	| 'arrow-down'
+	| 'arrow-left'
+	| 'arrow-right'
+	| 'arrow-up'
+	| 'menu'
+	| 'user'
+	| 'cross'
+	| 'mail'
+	| 'eye-open'
+	| 'eye-close'
+	| 'asterisk'

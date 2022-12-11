@@ -1,0 +1,111 @@
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'PTRootUIWebVF', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+body {
+  position: relative;
+  background-color: $Black70;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+*,
+:before,
+:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-locale: auto;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  border-radius: 0;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='tel'],
+input[type='email'],
+input[type='number'],
+textarea,
+button {
+  -webkit-appearance: none;
+}
+
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  width: 0;
+  height: 0;
+}
+
+fieldset {
+  border: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+.swiper a {
+  user-select: none;
+}
+
+.grecaptcha-badge {
+  position: absolute !important;
+  right: 10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+}
+
+.portal-wrapper {
+  height: 100%;
+}
