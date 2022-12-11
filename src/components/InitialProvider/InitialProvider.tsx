@@ -1,6 +1,6 @@
 import { getCookie } from 'cookies-next'
 import { initializeApp } from 'firebase/app'
-import { getAuth, signInWithCustomToken } from 'firebase/auth'
+import { getDatabase, ref, onValue } from 'firebase/database'
 import { FunctionComponent, PropsWithChildren, useEffect } from 'react'
 import { useAppDispatch } from 'store'
 import { setUser } from 'store/user'
@@ -22,18 +22,17 @@ export const InitialProvider: FunctionComponent<PropsWithChildren> = ({
 	children,
 }): JSX.Element => {
 	const dispatch = useAppDispatch()
-	const auth = getAuth()
 
 	useEffect(() => {
 		const tokenAuth = getCookie('TokenAuth')
+		if (!tokenAuth) return
 
-		// console.log('auth_____ ', auth)
-		// signInWithCustomToken(auth, tokenAuth).then((data) => {
-		// 	console.log('че тут ааа___ ', data)
-		// })
+		const db = getDatabase(app)
+		const userRef = ref(db, `/users/${tokenAuth}`)
 
-		// if (!user) return
-		// if (user) dispatch(setUser(user))
+		onValue(userRef, (snapshot) => {
+			dispatch(setUser(snapshot.val()))
+		})
 	}, [])
 
 	return <>{children}</>

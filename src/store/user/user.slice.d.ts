@@ -2,7 +2,9 @@ import { Nullable } from 'types'
 
 export interface IUser {
   name?: string
-  mail?: string
+  email?: string
+  password?: string
+  uid?: string
 }
 
 export interface IUserState {
