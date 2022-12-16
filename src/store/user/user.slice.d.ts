@@ -1,4 +1,4 @@
-import { Nullable } from 'types'
+import { Nullable, TLoadStatuses } from 'types'
 
 export interface IUser {
   name?: string
@@ -7,8 +7,12 @@ export interface IUser {
   uid?: string
 }
 
+type THistoryState = number[] | unknown[]
+
 export interface IUserState {
   user: Nullable<IUser>
-  viewed: number[] | unknown[]
-  watch: number[] | unknown[]
+  viewed: THistoryState
+  watch: THistoryState
+  isError: null
+  isGlobalLoad: TLoadStatuses
 }

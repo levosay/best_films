@@ -1,6 +1,7 @@
 import { getCookie } from 'cookies-next'
 import { initializeApp } from 'firebase/app'
 import { getDatabase, ref, onValue } from 'firebase/database'
+// import { useRouter } from 'next/router'
 import { FunctionComponent, PropsWithChildren, useEffect } from 'react'
 import { useAppDispatch } from 'store'
 import { setUser } from 'store/user'
@@ -22,10 +23,11 @@ export const InitialProvider: FunctionComponent<PropsWithChildren> = ({
 	children,
 }): JSX.Element => {
 	const dispatch = useAppDispatch()
+	// const router = useRouter()
 
 	useEffect(() => {
 		const tokenAuth = getCookie('TokenAuth')
-		if (!tokenAuth) return
+		// if (!tokenAuth) router.push('/signin')
 
 		const db = getDatabase(app)
 		const userRef = ref(db, `/users/${tokenAuth}`)
