@@ -18,10 +18,8 @@ export const createUserThink = createAsyncThunk<User, ICreateUserProps>(
 				user,
 			}
 		} catch (error) {
-			const { customData } = error as AuthError
-
-			console.log('customData_________ ', customData)
-			const parsedError = JSON.parse(customData._tokenResponse.error.message)
+			const { message } = error as Error
+			const parsedError = JSON.parse(message)
 			return rejectWithValue(parsedError)
 		}
 	}

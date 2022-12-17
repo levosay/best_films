@@ -18,18 +18,7 @@ import {
 } from './styled'
 import { YupSchema } from './yupSchema'
 
-// const firebaseConfig = {
-// 	apiKey: 'AIzaSyDz1aH0kzBRdGkHhiYGDuJLJghuD1YOb9M',
-// 	authDomain: 'best-films-base.firebaseapp.com',
-// 	databaseURL:
-// 		'https://best-films-base-default-rtdb.europe-west1.firebasedatabase.app',
-// 	projectId: 'best-films-base',
-// 	storageBucket: 'best-films-base.appspot.com',
-// 	messagingSenderId: '462223000484',
-// 	appId: '1:462223000484:web:76e6b64ca2c497516b7731',
-// }
-
-// ryuuzaki44l@gmail.com
+// mongodb+srv://levosay:<password>@cluster0.zvr2jxw.mongodb.net/?retryWrites=true&w=majority
 
 export const SignUpModule: FunctionComponent<
 	ISignUpProps
