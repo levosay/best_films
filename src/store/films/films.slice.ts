@@ -1,14 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FilmSearchByFiltersResponse } from 'api/models'
 import { IFilmsState } from './films.slice.d'
-// import { globalFilmsThunk } from './globalFilms.thunk'
+import { filmsThunk } from './films.thunk'
 
 const initialState: IFilmsState = {
 	films: null,
 	detailed: null,
 	isError: null,
 	isContentLoad: 'idle',
-	isGlobalLoad: 'idle',
 }
 
 export const filmsSlice = createSlice({
@@ -25,29 +24,29 @@ export const filmsSlice = createSlice({
 			state.isError = initialState.isError
 		},
 	},
-	// extraReducers: (builder) => {
-	// 	builder
-	// 		.addCase(globalFilmsThunk.pending, (state) => {
-	// 			state.isGlobalLoad = 'pending'
-	// 			state.isError = null
-	// 		})
-	// 		.addCase(globalFilmsThunk.fulfilled, (state, { payload }) => {
-	// 			state.films = payload
-	// 			state.isGlobalLoad = 'idle'
-	// 			state.isError = null
-	// 		})
-	// 		.addCase(
-	// 			globalFilmsThunk.rejected,
-	// 			(
-	// 				state,
-	// 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	// 				{ payload }: PayloadAction<any>
-	// 			) => {
-	// 				state.isGlobalLoad = 'rejected'
-	// 				state.isError = payload
-	// 			}
-	// 		)
-	// },
+	extraReducers: (builder) => {
+		builder
+			.addCase(filmsThunk.pending, (state) => {
+				state.isContentLoad = 'pending'
+				state.isError = null
+			})
+			.addCase(filmsThunk.fulfilled, (state, { payload }) => {
+				state.films = payload
+				state.isContentLoad = 'idle'
+				state.isError = null
+			})
+			.addCase(
+				filmsThunk.rejected,
+				(
+					state,
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
+					{ payload }: PayloadAction<any>
+				) => {
+					state.isContentLoad = 'rejected'
+					state.isError = payload
+				}
+			)
+	},
 })
 
 export const { setFilms, resetError } = filmsSlice.actions

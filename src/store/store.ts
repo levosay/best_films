@@ -33,7 +33,7 @@ export const store = () =>
 		reducer: masterReducer,
 	})
 
-export const wrapper = createWrapper(store, { debug: true })
+export const wrapper = createWrapper(store)
 
 type Store = ReturnType<typeof store>
 export type RootState = ReturnType<Store['getState']>

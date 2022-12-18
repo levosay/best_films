@@ -10,3 +10,4 @@ export type Icons =
 	| 'eye-open'
 	| 'eye-close'
 	| 'asterisk'
+	| 'dots-h'

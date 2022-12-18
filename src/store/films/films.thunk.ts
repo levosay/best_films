@@ -2,14 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { FilmSearchByFiltersResponse, GetApiV22FilmsParams } from 'api/models'
 import { getApiV22Films } from 'api/service/films/films'
 
-interface IGetFilmsParams {
-	params?: GetApiV22FilmsParams
-}
-
-export const globalFilmsThunk = createAsyncThunk<
+export const filmsThunk = createAsyncThunk<
 	FilmSearchByFiltersResponse,
-	IGetFilmsParams
->('globalFilms/thunk', async ({ params }, { rejectWithValue }) => {
+	GetApiV22FilmsParams
+>('films/thunk', async (params, { rejectWithValue }) => {
 	try {
 		return await getApiV22Films(params)
 	} catch (error) {
