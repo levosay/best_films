@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IUserState, IUser } from './user.slice.d'
-import { createUserThink } from './user.thunk'
+// import { createUserThink } from './user.thunk'
 
 const initialState: IUserState = {
 	user: null,

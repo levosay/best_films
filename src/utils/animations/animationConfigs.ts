@@ -23,9 +23,15 @@ const opacitySlideDownMenu: UseTransitionProps = {
 	leave: { opacity: 0, top: -200 },
 }
 
+const opacitySlideRight: UseTransitionProps = {
+	from: { opacity: 0, right: -200 },
+	enter: { opacity: 1, right: 0 },
+}
+
 export const AnimeConfigs = {
 	opacity,
 	opacityWithoutLeave,
 	opacitySlideDown,
 	opacitySlideDownMenu,
+	opacitySlideRight,
 }

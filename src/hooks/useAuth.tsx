@@ -12,13 +12,13 @@ import { setUser } from 'store/user'
 import { HookFormValues } from 'types'
 
 const firebaseConfig = {
-	apiKey: process.env.NEXT_PUBLIC_API_KEY,
+	apiKey: process.env.NEXT_PUBLIC_BD_API_KEY,
 	authDomain: 'best-films-base.firebaseapp.com',
-	databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
+	databaseURL: process.env.NEXT_PUBLIC_BD_DATABASE_URL,
 	projectId: 'best-films-base',
 	storageBucket: 'best-films-base.appspot.com',
 	messagingSenderId: '462223000484',
-	appId: process.env.NEXT_PUBLIC_API_ID,
+	appId: process.env.NEXT_PUBLIC_BD_API_ID,
 }
 
 export const UseAuth = () => {

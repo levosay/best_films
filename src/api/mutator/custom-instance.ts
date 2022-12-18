@@ -1,71 +1,43 @@
-import { PostAuthLogin200Data } from 'api/models'
-import { CONFIG, isBrowser } from 'utils/constants'
-import {
-  getCookiesFromClient,
-  getCookiesFromReq,
-} from 'utils/helpers'
-import { IErrorResponse } from 'api/response'
+// import { isBrowser } from 'utils/constants'
 
-const serverURL = CONFIG.apiEndpointDev
-const clientURL = CONFIG.apiEndpointProd
-const baseURL = isBrowser ? clientURL : serverURL
+// const serverURL = process.env.NEXT_PUBLIC_FILMS_API_URL_DEV
+// const clientURL = process.env.NEXT_PUBLIC_FILMS_API_URL_PROD
+// const baseURL = isBrowser ? clientURL : serverURL
+const baseURL = process.env.NEXT_PUBLIC_FILMS_API_URL_DEV
 
 export const customInstance = async <T>({
-  url,
-  method,
-  params,
-  data,
-  headers,
-  requestAuthToken,
+	url,
+	method,
+	params,
 }: {
-  url: string
-  method: 'get' | 'post' | 'put' | 'delete' | 'patch'
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  params?: any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data?: any
-  responseType?: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  headers?: any
-  requestAuthToken?: string
+	url: string
+	method: 'get'
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	params?: any
 }): Promise<T> => {
-  const isFormData = isBrowser && data instanceof FormData
+	const customHeaders = new Headers()
+	customHeaders.append('Accept', 'application/json, */*')
+	customHeaders.append('X-API-KEY', `${process.env.NEXT_PUBLIC_FILMS_API_KEY}`)
 
-  const customHeaders = new Headers(headers)
-  customHeaders.append('Accept', 'application/json, */*')
+	const fullUrl = params
+		? `${baseURL}${url}` + `?` + new URLSearchParams(params)
+		: `${baseURL}${url}`
 
-  const cookies =
-    getCookiesFromClient<PostAuthLogin200Data>('authToken')
-  const token = requestAuthToken ?? cookies?.token
-  customHeaders.append('Authorization', `Bearer ${token}`)
+	const response = await fetch(fullUrl, {
+		method: method.toUpperCase(),
+		headers: customHeaders,
+	})
 
-  const fullUrl = params
-    ? `${baseURL}${url}` + `?` + new URLSearchParams(params)
-    : `${baseURL}${url}`
+	const json = (await response.json()) as T
 
-  const body = isFormData ? data : JSON.stringify(data)
+	if (!response.ok) {
+		const { status } = response
+		const withStatus = { ...json, status }
+		const error = JSON.stringify(withStatus)
+		throw new Error(error)
+	}
 
-  const response = await fetch(fullUrl, {
-    method: method.toUpperCase(),
-    headers: customHeaders,
-    body,
-  })
-
-  const json = (await response.json()) as T
-
-  if (!response.ok) {
-    const { status } = response
-    const concatMsg = Object.values(
-      (json as IErrorResponse).errors as { [key: string]: unknown }
-    )
-      .flat()
-      .join('')
-    const withStatus = { ...json, status, message: concatMsg }
-    const error = JSON.stringify(withStatus)
-    throw new Error(error)
-  }
-
-  return json
+	return json
 }
 
 export default customInstance

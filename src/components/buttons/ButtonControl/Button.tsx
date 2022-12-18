@@ -50,6 +50,7 @@ export const ButtonControl: FunctionComponent<
 			<Link href={href} passHref {...nextLinkProps}>
 				<ButtonStyled
 					as={as}
+					theme={theme}
 					fullWidth={fullWidth}
 					noFilled={noFilled}
 					onClick={onClick}

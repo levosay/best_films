@@ -10,7 +10,8 @@ export const MenuItemStyled = styled.div<IActiveMenuItem>`
 	font-size: 24px;
 	text-transform: uppercase;
 	border-bottom: 2px solid transparent;
-	transition: all ${Transition.ms300};
+	transition: all ${Transition.ms200};
+	cursor: pointer;
 
 	${({ active }) =>
 		active &&

@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { FunctionComponent, useMemo, useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { ButtonControl, Container, Icon, Title } from 'components'
 import { useOrientation, useScrollBlock } from 'hooks'
 import { AnimeConfigs, MountAnimation } from 'utils/animations'
-import { Menu } from './components'
+import { Menu, Author } from './components'
 import { IHeaderProps } from './Header.d'
 import {
 	HeaderStyled,
@@ -16,7 +16,6 @@ import {
 
 export const Header: FunctionComponent<IHeaderProps> = (): JSX.Element => {
 	const [openMenu, setOpenMenu] = useState(false)
-	const burgerIcon = useMemo(() => (openMenu ? 'cross' : 'menu'), [openMenu])
 
 	const toggleMenu = () => {
 		setOpenMenu((prev) => !prev)
@@ -44,9 +43,10 @@ export const Header: FunctionComponent<IHeaderProps> = (): JSX.Element => {
 					</Logo>
 				</Link>
 				<Menu />
+				<Author />
 				<MenuBurger>
 					<ButtonControl
-						startIcon={<Icon id={burgerIcon} />}
+						startIcon={<Icon id={openMenu ? 'cross' : 'menu'} />}
 						onClick={toggleMenu}
 					/>
 				</MenuBurger>

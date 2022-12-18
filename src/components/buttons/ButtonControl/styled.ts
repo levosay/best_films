@@ -123,6 +123,20 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
 			}
 		`}
 
+  ${({ theme }) =>
+		theme === 'outline' &&
+		css`
+			box-shadow: inset ${colors.primary} 0 0 0 1px;
+			color: ${colors.black};
+
+			@media (hover: hover) {
+				&:hover {
+					box-shadow: inset ${colors.primaryLight} 0 0 0 1px;
+					color: ${colors.primaryLight};
+				}
+			}
+		`}
+
   ${({ fullWidth }) =>
 		fullWidth &&
 		css`

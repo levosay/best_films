@@ -1,18 +1,17 @@
 import 'assets/styles/main.scss'
 import type { AppProps } from 'next/app'
-import { Provider } from 'react-redux'
 import { InitialProvider } from 'components'
 import { MyLayout } from 'layouts'
-import { store } from 'store'
+import { wrapper } from 'store'
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
 	return (
-		<Provider store={store}>
-			<InitialProvider>
-				<MyLayout>
-					<Component {...pageProps} />
-				</MyLayout>
-			</InitialProvider>
-		</Provider>
+		<InitialProvider>
+			<MyLayout>
+				<Component {...pageProps} />
+			</MyLayout>
+		</InitialProvider>
 	)
 }
+
+export default wrapper.withRedux(App)

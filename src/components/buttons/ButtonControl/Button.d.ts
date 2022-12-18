@@ -10,6 +10,7 @@ type TTheme =
   | 'white'
   | 'black'
   | 'gray'
+  | 'outline'
 
 type TFontWeight = 500 | 700
 
