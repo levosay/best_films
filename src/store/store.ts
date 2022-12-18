@@ -3,24 +3,26 @@ import {
 	combineReducers,
 	AnyAction,
 	ThunkDispatch,
+	CombinedState,
 } from '@reduxjs/toolkit'
 import { createWrapper, HYDRATE } from 'next-redux-wrapper'
-import { filmsReducer } from './films'
-import { userReducer } from './user'
+import { filmsReducer, IFilmsState } from './films'
+import { IUserState, userReducer } from './user'
 
 const combineReducer = combineReducers({
 	user: userReducer,
 	films: filmsReducer,
 })
 
-const masterReducer = (state, action) => {
+const masterReducer = (
+	state: CombinedState<{ user: IUserState; films: IFilmsState }> | undefined,
+	action: AnyAction
+) => {
 	if (action.type === HYDRATE) {
-		const nextState = {
-			...state, // use previous state
-			...action.payload, // apply delta from hydration
+		return {
+			...state,
+			...action.payload,
 		}
-		if (state.count) nextState.count = state.count // preserve count value on client side navigation
-		return nextState
 	} else {
 		return combineReducer(state, action)
 	}

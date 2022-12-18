@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
-import { getApiV22Films } from 'api/service/films/films'
+import { getApiV22Films, useGetApiV22Films } from 'api/service/films/films'
 import { UseFilms } from 'hooks'
 import { useAppSelector, userStore, wrapper } from 'store'
 import { setFilms } from 'store/films'
@@ -8,9 +8,12 @@ const Home = () => {
 	const { user } = useAppSelector(userStore)
 	const { films } = UseFilms()
 
+	//
+	// console.log('data______ ', data)
+
 	return (
 		<>
-			{isGlobalLoad === 'pending' && <div>ЗАГРУЗКА</div>}
+			{!films && <div>ЗАГРУЗКА</div>}
 
 			<div>
 				<div>
@@ -33,6 +36,7 @@ export const getServerSideProps: GetServerSideProps =
 			const films = await getApiV22Films()
 			store.dispatch(setFilms(films))
 		} catch (erorr) {
+			// TODO ошибку в стор
 			console.log(erorr)
 		}
 
