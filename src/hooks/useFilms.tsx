@@ -2,7 +2,7 @@ import { GetApiV22FilmsParams } from 'api/models'
 import { filmsStore, useAppDispatch, useAppSelector } from 'store'
 import { filmsThunk } from 'store/films'
 
-export const UseFilms = () => {
+export const useFilms = () => {
 	const dispatch = useAppDispatch()
 	const { films, detailed, isContentLoad, isError } = useAppSelector(filmsStore)
 

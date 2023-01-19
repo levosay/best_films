@@ -51,3 +51,12 @@
   src: url('/fonts/PT-Root-UI_VF.woff2') format('woff2'),
     url('/fonts/PT-Root-UI_VF.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'JosefinSans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/JosefinSans-Italic-VariableFont_wght.woff2') format('woff2'),
+  url('/fonts/JosefinSans-Italic-VariableFont_wght.woff') format('woff');
+}

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 import { Preloader, Pagination } from 'components'
-import { UseFilms } from 'hooks'
+import { useFilms } from 'hooks'
 import { FilmsList } from './components'
 import { IFilmsBlockProps } from './FilmsBlock.d'
 import { FilmsBlockStyled } from './styled'
@@ -8,7 +8,7 @@ import { FilmsBlockStyled } from './styled'
 export const FilmsBlockModule: FunctionComponent<
 	IFilmsBlockProps
 > = (): JSX.Element => {
-	const { films, isContentLoad, getFilmsThunk } = UseFilms()
+	const { films, isContentLoad, getFilmsThunk } = useFilms()
 
 	const moveCurrentPage = (selected: number) => {
 		getFilmsThunk({ page: selected })
